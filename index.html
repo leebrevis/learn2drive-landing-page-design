@@ -1,26 +1,1230 @@
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>learn2drive-landing-page-design</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn2Drive Driving School</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/lucide@latest/dist/umd/lucide.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'driving-blue': '#1E88E5',
+            'driving-darkBlue': '#1565C0',
+            'driving-lightBlue': '#64B5F6',
+            'driving-red': '#E53935',
+            'driving-green': '#43A047',
+            'driving-yellow': '#FFD600',
+            'driving-gray': '#78909C',
+            'driving-lightGray': '#ECEFF1'
+          },
+          keyframes: {
+            'car-move': {
+              '0%': { transform: 'translateX(-100px)' },
+              '100%': { transform: 'translateX(100px)' }
+            },
+            'fade-in': {
+              '0%': { opacity: '0', transform: 'translateY(10px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' }
+            },
+            'count-up': {
+              '0%': { transform: 'translateY(5px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' }
+            },
+            'traffic-light': {
+              '0%, 33%': { backgroundColor: '#E53935' },
+              '33%, 66%': { backgroundColor: '#FFD600' },
+              '66%, 100%': { backgroundColor: '#43A047' }
+            },
+          },
+          animation: {
+            'car-move': 'car-move 5s ease-in-out infinite alternate',
+            'fade-in': 'fade-in 0.5s ease-out forwards',
+            'count-up': 'count-up 1s ease-out forwards',
+            'traffic-light': 'traffic-light 3s infinite',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .section-title {
+      @apply text-3xl md:text-4xl font-bold text-center mb-8 relative;
+    }
+    
+    .section-title::after {
+      content: '';
+      @apply block w-20 h-1 bg-driving-blue mx-auto mt-2;
+    }
+    
+    .nav-link {
+      @apply inline-block py-2 px-4 text-gray-900 hover:text-driving-blue transition-colors relative;
+    }
+    
+    .nav-link::after {
+      content: '';
+      @apply absolute w-0 h-0.5 bg-driving-blue left-1/2 -translate-x-1/2 bottom-0 transition-all duration-300;
+    }
+    
+    .nav-link:hover::after {
+      @apply w-3/4;
+    }
+    
+    .btn-primary {
+      @apply bg-driving-blue text-white py-3 px-6 rounded-md font-medium 
+             hover:bg-driving-darkBlue transition-colors duration-300 shadow-md;
+    }
+    
+    .feature-card {
+      @apply bg-white p-6 rounded-lg shadow-md border border-gray-100 
+             flex flex-col items-center transition-all duration-300
+             hover:shadow-lg hover:-translate-y-1;
+    }
+    
+    .road-sign {
+      @apply w-16 h-16 md:w-20 md:h-20 p-2 rounded-full flex items-center justify-center
+             shadow-md hover:scale-110 transition-transform;
+    }
+    
+    .road-line {
+      @apply bg-driving-yellow h-2 w-16 mb-2 rounded-full;
+      animation: road-line-animation 2s infinite linear;
+    }
+    
+    @keyframes road-line-animation {
+      0% {
+        transform: translateX(-100px);
+      }
+      100% {
+        transform: translateX(100px);
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <!-- Navbar -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-transparent py-4 transition-all duration-300">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center">
+        <div class="flex items-center">
+          <div class="text-xl md:text-2xl font-bold text-driving-blue">
+            <span class="mr-1">Learn</span>
+            <span class="text-driving-darkBlue">2</span>
+            <span>Drive</span>
+          </div>
+        </div>
+        
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center space-x-1">
+          <button onclick="scrollToSection('home')" class="nav-link">Home</button>
+          <button onclick="scrollToSection('about')" class="nav-link">About Us</button>
+          <button onclick="scrollToSection('gallery')" class="nav-link">Our Gallery</button>
+          <button onclick="scrollToSection('enquiry')" class="nav-link">Enquiry</button>
+          <button onclick="scrollToSection('contact')" class="nav-link">Contact Us</button>
+        </div>
+        
+        <!-- Social Media Icons -->
+        <div class="hidden md:flex items-center space-x-3">
+          <a href="#" class="text-gray-600 hover:text-driving-blue transition-colors" aria-label="Facebook">
+            <i data-lucide="facebook" class="w-5 h-5"></i>
+          </a>
+          <a href="#" class="text-gray-600 hover:text-driving-blue transition-colors" aria-label="Instagram">
+            <i data-lucide="instagram" class="w-5 h-5"></i>
+          </a>
+          <a href="#" class="text-gray-600 hover:text-driving-blue transition-colors" aria-label="YouTube">
+            <i data-lucide="youtube" class="w-5 h-5"></i>
+          </a>
+        </div>
 
-    <meta property="og:title" content="learn2drive-landing-page-design" />
-    <meta property="og:description" content="Lovable Generated Project" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+        <!-- Mobile Menu Button -->
+        <button 
+          id="menuToggle"
+          class="md:hidden text-gray-600 focus:outline-none"
+          aria-label="Menu"
+        >
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-  </head>
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="md:hidden bg-white rounded-lg shadow-lg mt-2 p-4 absolute left-4 right-4 hidden animate-fade-in">
+        <div class="flex flex-col space-y-3">
+          <button onclick="scrollToSection('home')" class="text-left py-2 px-3 hover:bg-gray-100 rounded">Home</button>
+          <button onclick="scrollToSection('about')" class="text-left py-2 px-3 hover:bg-gray-100 rounded">About Us</button>
+          <button onclick="scrollToSection('gallery')" class="text-left py-2 px-3 hover:bg-gray-100 rounded">Our Gallery</button>
+          <button onclick="scrollToSection('enquiry')" class="text-left py-2 px-3 hover:bg-gray-100 rounded">Enquiry</button>
+          <button onclick="scrollToSection('contact')" class="text-left py-2 px-3 hover:bg-gray-100 rounded">Contact Us</button>
+          
+          <div class="flex space-x-4 pt-2 border-t">
+            <a href="#" class="text-gray-600 hover:text-driving-blue transition-colors" aria-label="Facebook">
+              <i data-lucide="facebook" class="w-5 h-5"></i>
+            </a>
+            <a href="#" class="text-gray-600 hover:text-driving-blue transition-colors" aria-label="Instagram">
+              <i data-lucide="instagram" class="w-5 h-5"></i>
+            </a>
+            <a href="#" class="text-gray-600 hover:text-driving-blue transition-colors" aria-label="YouTube">
+              <i data-lucide="youtube" class="w-5 h-5"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
 
-  <body>
-    <div id="root"></div>
-    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+  <!-- Hero Section -->
+  <section id="home" class="relative h-screen flex items-center">
+    <!-- Background Image -->
+    <div class="absolute inset-0 bg-black/20 z-10"></div>
+    <div 
+      class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+      style="background-image: url('https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=1964&auto=format');"
+    ></div>
+    
+    <!-- Content -->
+    <div class="container mx-auto px-4 relative z-20">
+      <div class="max-w-xl">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+          Learning to Drive <br />
+          <span class="text-driving-yellow">Begin Your Journey</span>
+        </h1>
+        <p class="text-xl text-white mb-8">
+          Expert instruction that builds confidence and creates safe, skilled drivers for life.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <button class="btn-primary">Book a Lesson</button>
+          <button class="border-2 border-white text-white py-3 px-6 rounded-md font-medium hover:bg-white/20 transition-colors duration-300">
+            Learn More
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Scroll down indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+      <div class="w-8 h-12 border-2 border-white rounded-full flex justify-center">
+        <div class="w-1 h-3 bg-white rounded-full mt-2 animate-bounce delay-150"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Review Carousel Section -->
+  <section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="section-title">Student Reviews</h2>
+      
+      <div class="max-w-4xl mx-auto">
+        <!-- Carousel -->
+        <div class="relative p-6 md:p-10 bg-white shadow-lg rounded-lg overflow-hidden">
+          
+          <!-- Quote icon -->
+          <div class="absolute top-6 left-6 text-driving-blue/10">
+            <i data-lucide="quote" class="w-14 h-14"></i>
+          </div>
+          
+          <!-- Review content -->
+          <div id="reviewContainer" class="flex flex-col md:flex-row items-center gap-8 transition-opacity duration-500">
+            <!-- Review content will be inserted here by JavaScript -->
+          </div>
+          
+          <!-- Navigation controls -->
+          <div class="absolute bottom-6 right-6 flex space-x-2">
+            <button 
+              id="prevReview"
+              class="p-2 rounded-full bg-driving-blue/10 text-driving-blue hover:bg-driving-blue hover:text-white transition-colors"
+              aria-label="Previous review"
+            >
+              <i data-lucide="chevron-left" class="w-5 h-5"></i>
+            </button>
+            <button 
+              id="nextReview"
+              class="p-2 rounded-full bg-driving-blue/10 text-driving-blue hover:bg-driving-blue hover:text-white transition-colors"
+              aria-label="Next review"
+            >
+              <i data-lucide="chevron-right" class="w-5 h-5"></i>
+            </button>
+          </div>
+          
+          <!-- Indicators -->
+          <div id="reviewIndicators" class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2">
+            <!-- Indicators will be inserted here by JavaScript -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Banner Section -->
+  <section class="relative h-80 md:h-96">
+    <div class="absolute inset-0 bg-black/40 z-10"></div>
+    <div 
+      class="absolute inset-0 bg-cover bg-center bg-fixed"
+      style="background-image: url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=2070&auto=format');"
+    ></div>
+    
+    <div class="container mx-auto px-4 h-full flex items-center justify-center relative z-20">
+      <div class="text-center">
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+          Ready to Start Your Driving Journey?
+        </h2>
+        <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+          Take the first step towards driving independence with Learn2Drive.
+        </p>
+        <button class="btn-primary">Book Your First Lesson Today</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="section-title">Why Choose Us</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="features-container">
+        <!-- Features will be inserted here by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="py-20">
+    <div class="container mx-auto px-4">
+      <h2 class="section-title">Our Gallery</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery-container">
+        <!-- Gallery items will be inserted here by JavaScript -->
+      </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="fixed inset-0 bg-black/90 z-50 hidden items-center justify-center">
+      <button 
+        id="closeLightbox"
+        class="absolute top-4 right-4 text-white p-2 rounded-full hover:bg-white/10"
+        aria-label="Close lightbox"
+      >
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+      
+      <div class="max-w-4xl max-h-[80vh] relative">
+        <img 
+          id="lightboxImage"
+          src=""
+          alt=""
+          class="max-w-full max-h-[80vh] object-contain"
+        />
+        
+        <div class="absolute left-0 right-0 bottom-0 p-4 bg-black/50 text-white">
+          <p id="lightboxCaption"></p>
+          <p id="lightboxCounter" class="text-sm text-white/70"></p>
+        </div>
+        
+        <!-- Navigation buttons -->
+        <button 
+          id="prevImage"
+          class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full"
+          aria-label="Previous image"
+        >
+          <i data-lucide="chevron-left" class="w-6 h-6"></i>
+        </button>
+        
+        <button 
+          id="nextImage"
+          class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full"
+          aria-label="Next image"
+        >
+          <i data-lucide="chevron-right" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section id="about" class="py-20 bg-gray-50 overflow-hidden">
+    <div class="container mx-auto px-4">
+      <h2 class="section-title">About Us</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <!-- Text content -->
+        <div>
+          <p class="text-gray-700 mb-4">
+            At Learn2Drive, we've been committed to creating safe, confident drivers since 1998. Our driving school was founded on the principle that learning to drive should be a positive, empowering experience that builds skills for life.
+          </p>
+          <p class="text-gray-700 mb-4">
+            Our team of passionate instructors brings decades of combined experience to every lesson. We understand that each student learns differently, which is why we tailor our instruction to your individual pace and learning style.
+          </p>
+          <p class="text-gray-700 mb-6">
+            We take pride in our modern fleet of dual-control vehicles, comprehensive lesson plans, and our focus on developing not just the technical skills of driving, but the crucial decision-making and hazard perception abilities that make you a truly safe driver for life.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <button class="btn-primary">Our Courses</button>
+            <button class="border-2 border-driving-blue text-driving-blue py-3 px-6 rounded-md font-medium hover:bg-driving-blue/10 transition-colors duration-300">
+              Meet Our Team
+            </button>
+          </div>
+        </div>
+        
+        <!-- Animation -->
+        <div class="relative h-64 mt-10 md:mt-0">
+          <!-- Road background -->
+          <div class="absolute inset-x-0 bottom-0 h-16 bg-gray-800 rounded-lg"></div>
+          
+          <!-- Road lines -->
+          <div class="absolute left-1/2 transform -translate-x-1/2 bottom-8">
+            <div class="road-line"></div>
+            <div class="road-line"></div>
+            <div class="road-line"></div>
+          </div>
+          
+          <!-- Car -->
+          <div class="absolute bottom-16 left-1/2 transform -translate-x-1/2 animate-car-move">
+            <svg width="100" height="50" viewBox="0 0 100 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="15" y="30" width="70" height="15" rx="5" fill="#1E88E5" />
+              <rect x="25" y="15" width="50" height="15" rx="3" fill="#1E88E5" />
+              <circle cx="30" cy="45" r="5" fill="#333" />
+              <circle cx="70" cy="45" r="5" fill="#333" />
+              <rect x="85" y="33" width="5" height="2" fill="#FF5252" />
+              <rect x="10" y="33" width="5" height="2" fill="#FFEB3B" />
+              <rect x="35" y="20" width="15" height="7" fill="#E1F5FE" />
+              <rect x="55" y="20" width="15" height="7" fill="#E1F5FE" />
+              <text x="40" y="42" fill="white" font-size="10" font-weight="bold">L</text>
+            </svg>
+          </div>
+          
+          <!-- Traffic light -->
+          <div class="absolute right-10 bottom-16 flex flex-col items-center">
+            <div class="w-10 h-20 bg-gray-700 rounded-md overflow-hidden flex flex-col items-center justify-between p-1">
+              <div class="w-7 h-7 rounded-full bg-red-500 animate-traffic-light"></div>
+              <div class="w-7 h-7 rounded-full bg-yellow-500"></div>
+              <div class="w-7 h-7 rounded-full bg-green-500"></div>
+            </div>
+            <div class="w-4 h-16 bg-gray-700"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Stories Section -->
+  <section class="py-20 bg-driving-blue text-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 relative">
+        Our Success by the Numbers
+        <span class="block w-20 h-1 bg-white mx-auto mt-2"></span>
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10" id="stats-container">
+        <!-- Stats will be inserted here by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="enquiry" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      
+      <div class="max-w-3xl mx-auto" id="faq-container">
+        <!-- FAQ items will be inserted here by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Road Signs Section -->
+  <section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="section-title">Basic Road Signs</h2>
+      
+      <div class="flex flex-wrap justify-center gap-4 md:gap-8" id="road-signs-container">
+        <!-- Road signs will be inserted here by JavaScript -->
+      </div>
+      
+      <div class="text-center mt-12">
+        <a href="#" class="text-driving-blue font-medium hover:underline">
+          View all road signs →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section id="contact" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="section-title">Find Us</h2>
+      
+      <div class="max-w-5xl mx-auto">
+        <div class="h-96 rounded-lg shadow-lg border border-gray-200 flex items-center justify-center bg-gray-100">
+          <p class="text-gray-600">Map placeholder</p>
+        </div>
+        
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+            <h3 class="text-xl font-semibold mb-3 text-driving-blue">Address</h3>
+            <p class="text-gray-700">
+              Learn2Drive Driving School<br />
+              123 Driving Avenue<br />
+              London, EC1A 1BB
+            </p>
+          </div>
+          
+          <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+            <h3 class="text-xl font-semibold mb-3 text-driving-blue">Contact</h3>
+            <p class="text-gray-700">
+              Phone: 020 7123 4567<br />
+              Email: info@learn2drive.com<br />
+              Office Hours: Mon-Fri 9am-5pm
+            </p>
+          </div>
+          
+          <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+            <h3 class="text-xl font-semibold mb-3 text-driving-blue">Coverage Area</h3>
+            <p class="text-gray-700">
+              We offer driving lessons throughout Greater London and surrounding areas.
+              Contact us for specific coverage details.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white pt-16 pb-8">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <!-- About Section -->
+        <div>
+          <div class="text-2xl font-bold mb-4">
+            <span class="mr-1">Learn</span>
+            <span class="text-driving-lightBlue">2</span>
+            <span>Drive</span>
+          </div>
+          <p class="text-gray-400 mb-4">
+            Professional driving instruction for learners of all levels. We focus on creating safe, confident drivers for life.
+          </p>
+          <div class="flex space-x-3">
+            <a href="#" class="p-2 bg-gray-800 rounded-full hover:bg-driving-blue transition-colors" aria-label="Facebook">
+              <i data-lucide="facebook" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="p-2 bg-gray-800 rounded-full hover:bg-driving-blue transition-colors" aria-label="Instagram">
+              <i data-lucide="instagram" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="p-2 bg-gray-800 rounded-full hover:bg-driving-blue transition-colors" aria-label="YouTube">
+              <i data-lucide="youtube" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Quick Links -->
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li>
+              <button 
+                onclick="scrollToSection('home')" 
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                Home
+              </button>
+            </li>
+            <li>
+              <button 
+                onclick="scrollToSection('about')" 
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                About Us
+              </button>
+            </li>
+            <li>
+              <button 
+                onclick="scrollToSection('gallery')" 
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                Our Gallery
+              </button>
+            </li>
+            <li>
+              <button 
+                onclick="scrollToSection('enquiry')" 
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                Enquiry
+              </button>
+            </li>
+            <li>
+              <button 
+                onclick="scrollToSection('contact')" 
+                class="text-gray-400 hover:text-white transition-colors"
+              >
+                Contact Us
+              </button>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Services -->
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Our Services</h3>
+          <ul class="space-y-2">
+            <li>
+              <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                Beginner Driving Lessons
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                Intensive Driving Courses
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                Theory Test Preparation
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                Pass Plus Courses
+              </a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                Refresher Lessons
+              </a>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Contact -->
+        <div>
+          <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <i data-lucide="map-pin" class="w-5 h-5 text-driving-blue mr-2 mt-0.5 flex-shrink-0"></i>
+              <span class="text-gray-400">
+                123 Driving Avenue<br />
+                London, EC1A 1BB
+              </span>
+            </li>
+            <li class="flex items-center">
+              <i data-lucide="phone" class="w-5 h-5 text-driving-blue mr-2 flex-shrink-0"></i>
+              <span class="text-gray-400">020 7123 4567</span>
+            </li>
+            <li class="flex items-center">
+              <i data-lucide="mail" class="w-5 h-5 text-driving-blue mr-2 flex-shrink-0"></i>
+              <a href="mailto:info@learn2drive.com" class="text-gray-400 hover:text-white transition-colors">
+                info@learn2drive.com
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Bottom section -->
+      <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+        <div class="text-gray-500 text-sm mb-4 md:mb-0">
+          &copy; <span id="currentYear"></span> Learn2Drive Driving School. All rights reserved.
+        </div>
+        
+        <div class="flex space-x-4 text-sm text-gray-500">
+          <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+          <a href="#" class="hover:text-white transition-colors">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Current Year
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.remove('bg-transparent', 'py-4');
+        navbar.classList.add('bg-white', 'shadow-md', 'py-2');
+      } else {
+        navbar.classList.add('bg-transparent', 'py-4');
+        navbar.classList.remove('bg-white', 'shadow-md', 'py-2');
+      }
+    });
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIcon = menuToggle.querySelector('[data-lucide="menu"]');
+    
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      
+      if (mobileMenu.classList.contains('hidden')) {
+        menuToggle.innerHTML = '<i data-lucide="menu" class="w-6 h-6"></i>';
+      } else {
+        menuToggle.innerHTML = '<i data-lucide="x" class="w-6 h-6"></i>';
+      }
+      
+      lucide.createIcons();
+    });
+
+    // Smooth scroll function
+    function scrollToSection(id) {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+      
+      // Close mobile menu if open
+      if (!mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.add('hidden');
+        menuToggle.innerHTML = '<i data-lucide="menu" class="w-6 h-6"></i>';
+        lucide.createIcons();
+      }
+    }
+
+    // Reviews carousel
+    const reviews = [
+      {
+        id: 1,
+        name: "Sarah Johnson",
+        photo: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&auto=format",
+        text: "Learn2Drive exceeded all my expectations! My instructor was patient and knowledgeable. I passed my test on the first attempt, and I felt completely prepared for driving independently.",
+        rating: 5
+      },
+      {
+        id: 2,
+        name: "Michael Chen",
+        photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&auto=format",
+        text: "As someone who was nervous about driving, I couldn't have chosen a better school. My instructor built my confidence gradually and always made me feel comfortable behind the wheel.",
+        rating: 5
+      },
+      {
+        id: 3,
+        name: "Emma Wilson",
+        photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&auto=format",
+        text: "I tried another driving school before switching to Learn2Drive, and the difference was incredible. Their teaching methods are clear, practical, and really helped me understand how to be a safe driver.",
+        rating: 4
+      }
+    ];
+
+    let currentReviewIndex = 0;
+    let isReviewAnimating = false;
+    let reviewTimeout;
+
+    function renderReview(index) {
+      const review = reviews[index];
+      const reviewContainer = document.getElementById('reviewContainer');
+      
+      // Create stars HTML
+      let starsHTML = '';
+      for (let i = 0; i < 5; i++) {
+        starsHTML += `<svg class="${i < review.rating ? 'text-yellow-400' : 'text-gray-300'}" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>`;
+      }
+      
+      reviewContainer.innerHTML = `
+        <div class="w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
+          <img 
+            src="${review.photo}" 
+            alt="${review.name}" 
+            class="w-full h-full object-cover rounded-full border-4 border-driving-lightBlue/30"
+          />
+        </div>
+        
+        <div class="flex-1 relative z-10">
+          <div class="flex mb-2">
+            ${starsHTML}
+          </div>
+          <p class="text-gray-700 mb-4 italic">"${review.text}"</p>
+          <p class="font-semibold text-driving-darkBlue">${review.name}</p>
+        </div>
+      `;
+      
+      // Update indicators
+      const indicators = document.getElementById('reviewIndicators');
+      indicators.innerHTML = reviews.map((_, i) => `
+        <button
+          onclick="goToReview(${i})"
+          class="w-2 h-2 rounded-full transition-all ${i === index ? 'w-6 bg-driving-blue' : 'bg-gray-300'}"
+          aria-label="Go to review ${i + 1}"
+        ></button>
+      `).join('');
+    }
+
+    function prevReview() {
+      if (isReviewAnimating) return;
+      
+      clearTimeout(reviewTimeout);
+      
+      isReviewAnimating = true;
+      reviewContainer.style.opacity = '0';
+      
+      setTimeout(() => {
+        currentReviewIndex = (currentReviewIndex === 0) ? reviews.length - 1 : currentReviewIndex - 1;
+        renderReview(currentReviewIndex);
+        reviewContainer.style.opacity = '1';
+        
+        setTimeout(() => {
+          isReviewAnimating = false;
+        }, 500);
+      }, 500);
+    }
+
+    function nextReview() {
+      if (isReviewAnimating) return;
+      
+      clearTimeout(reviewTimeout);
+      
+      isReviewAnimating = true;
+      reviewContainer.style.opacity = '0';
+      
+      setTimeout(() => {
+        currentReviewIndex = (currentReviewIndex === reviews.length - 1) ? 0 : currentReviewIndex + 1;
+        renderReview(currentReviewIndex);
+        reviewContainer.style.opacity = '1';
+        
+        setTimeout(() => {
+          isReviewAnimating = false;
+          startReviewTimer();
+        }, 500);
+      }, 500);
+    }
+
+    function goToReview(index) {
+      if (isReviewAnimating || index === currentReviewIndex) return;
+      
+      clearTimeout(reviewTimeout);
+      
+      isReviewAnimating = true;
+      reviewContainer.style.opacity = '0';
+      
+      setTimeout(() => {
+        currentReviewIndex = index;
+        renderReview(currentReviewIndex);
+        reviewContainer.style.opacity = '1';
+        
+        setTimeout(() => {
+          isReviewAnimating = false;
+          startReviewTimer();
+        }, 500);
+      }, 500);
+    }
+
+    function startReviewTimer() {
+      reviewTimeout = setTimeout(() => {
+        nextReview();
+      }, 5000);
+    }
+
+    document.getElementById('prevReview').addEventListener('click', prevReview);
+    document.getElementById('nextReview').addEventListener('click', nextReview);
+
+    // Initialize reviews
+    renderReview(currentReviewIndex);
+    startReviewTimer();
+
+    // Features
+    const features = [
+      {
+        id: 1,
+        title: "Qualified Instructors",
+        description: "Our instructors are fully licensed, experienced, and undergo continuous professional development.",
+        icon: "award"
+      },
+      {
+        id: 2,
+        title: "Highest Success Rate",
+        description: "We pride ourselves on our exceptional pass rates, consistently exceeding the national average.",
+        icon: "gauge"
+      },
+      {
+        id: 3,
+        title: "Highest Quality Vehicle",
+        description: "Learn in modern, well-maintained dual-control vehicles equipped with the latest safety features.",
+        icon: "car"
+      },
+      {
+        id: 4,
+        title: "Session for Theory",
+        description: "Comprehensive theory training using up-to-date materials and practice tests to ensure your success.",
+        icon: "book"
+      },
+      {
+        id: 5,
+        title: "Affordable Rates",
+        description: "Competitive pricing with flexible lesson packages and special rates for block bookings.",
+        icon: "dollar-sign"
+      },
+      {
+        id: 6,
+        title: "Unmatched Expertise",
+        description: "With decades of combined experience, our instructors bring unparalleled knowledge to every lesson.",
+        icon: "star"
+      }
+    ];
+
+    // Render features
+    const featuresContainer = document.getElementById('features-container');
+    featuresContainer.innerHTML = features.map(feature => `
+      <div class="feature-card">
+        <div class="mb-4">
+          <i data-lucide="${feature.icon}" class="w-10 h-10 text-driving-blue"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">${feature.title}</h3>
+        <p class="text-gray-600 text-center">${feature.description}</p>
+      </div>
+    `).join('');
+    lucide.createIcons();
+
+    // Gallery
+    const galleryImages = [
+      {
+        id: 1,
+        src: "https://images.unsplash.com/photo-1590510133954-b5663a4354ed?q=80&w=1964&auto=format",
+        alt: "Student learning to drive"
+      },
+      {
+        id: 2,
+        src: "https://images.unsplash.com/photo-1481967954090-2435e0e72e3d?q=80&w=2069&auto=format",
+        alt: "Driving lesson in progress"
+      },
+      {
+        id: 3,
+        src: "https://images.unsplash.com/photo-1574023278981-0b5ba9d43bf7?q=80&w=1964&auto=format",
+        alt: "Instructor teaching student"
+      },
+      {
+        id: 4,
+        src: "https://images.unsplash.com/photo-1518467166778-b88f373ffec7?q=80&w=1972&auto=format",
+        alt: "Dashboard view during driving lesson"
+      },
+      {
+        id: 5,
+        src: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?q=80&w=1964&auto=format",
+        alt: "Student with passed driving test"
+      },
+      {
+        id: 6,
+        src: "https://images.unsplash.com/photo-1543465077-db45d34b88a5?q=80&w=1965&auto=format",
+        alt: "Learning vehicle on the road"
+      }
+    ];
+
+    // Render gallery
+    const galleryContainer = document.getElementById('gallery-container');
+    galleryContainer.innerHTML = galleryImages.map((image, index) => `
+      <div 
+        class="relative overflow-hidden rounded-lg shadow-md aspect-video cursor-pointer group"
+        onclick="openLightbox(${index})"
+      >
+        <img 
+          src="${image.src}" 
+          alt="${image.alt}"
+          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+          <div class="text-white text-center">
+            <span class="text-sm font-medium">Click to view</span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    // Lightbox functionality
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const lightboxCounter = document.getElementById('lightboxCounter');
+    let currentImageIndex = 0;
+
+    function openLightbox(index) {
+      currentImageIndex = index;
+      updateLightboxContent();
+      lightbox.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    function nextImage() {
+      currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+      updateLightboxContent();
+    }
+
+    function prevImage() {
+      currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+      updateLightboxContent();
+    }
+
+    function updateLightboxContent() {
+      const image = galleryImages[currentImageIndex];
+      lightboxImage.src = image.src;
+      lightboxImage.alt = image.alt;
+      lightboxCaption.textContent = image.alt;
+      lightboxCounter.textContent = `${currentImageIndex + 1} of ${galleryImages.length}`;
+    }
+
+    document.getElementById('closeLightbox').addEventListener('click', closeLightbox);
+    document.getElementById('nextImage').addEventListener('click', (e) => {
+      e.stopPropagation();
+      nextImage();
+    });
+    document.getElementById('prevImage').addEventListener('click', (e) => {
+      e.stopPropagation();
+      prevImage();
+    });
+    lightbox.addEventListener('click', closeLightbox);
+    document.getElementById('lightboxImage').parentElement.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+
+    // Keyboard events for lightbox
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.style.display === 'flex') {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowRight') nextImage();
+        if (e.key === 'ArrowLeft') prevImage();
+      }
+    });
+
+    // Stats and Counters
+    const stats = [
+      {
+        id: 1,
+        number: 1500,
+        label: "Success Stories",
+        icon: "users"
+      },
+      {
+        id: 2,
+        number: 25,
+        label: "Years of Experience",
+        icon: "award"
+      },
+      {
+        id: 3,
+        number: 96,
+        label: "Passing Rate",
+        icon: "percent"
+      },
+      {
+        id: 4,
+        number: 4,
+        label: "Expert Instructors",
+        icon: "badge-plus"
+      }
+    ];
+
+    // Render stats
+    const statsContainer = document.getElementById('stats-container');
+    statsContainer.innerHTML = stats.map(stat => `
+      <div class="flex flex-col items-center">
+        <div class="mb-4 p-4 bg-white/10 rounded-full">
+          <i data-lucide="${stat.icon}" class="w-8 h-8 text-driving-blue"></i>
+        </div>
+        <div class="text-4xl md:text-5xl font-bold">
+          <span class="counter" data-target="${stat.number}">0</span>
+          ${stat.id === 3 ? '%' : ''}
+        </div>
+        <div class="mt-2 text-xl text-center">${stat.label}</div>
+      </div>
+    `).join('');
+    lucide.createIcons();
+
+    // Counter animation
+    const counters = document.querySelectorAll('.counter');
+    
+    // Intersection Observer for counters
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const counter = entry.target;
+          const target = parseInt(counter.getAttribute('data-target'));
+          let count = 0;
+          const duration = 2000; // 2 seconds
+          const increment = Math.ceil(target / (duration / 16)); // 60fps
+          
+          const updateCount = () => {
+            if (count < target) {
+              count += increment;
+              if (count > target) count = target;
+              counter.textContent = count;
+              requestAnimationFrame(updateCount);
+            }
+          };
+          
+          updateCount();
+          counterObserver.unobserve(counter);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    counters.forEach(counter => {
+      counterObserver.observe(counter);
+    });
+
+    // FAQ Accordion
+    const faqItems = [
+      {
+        id: 1,
+        question: "How many lessons will I need to pass my test?",
+        answer: "The number of lessons varies for each student depending on their prior experience, natural aptitude, and how frequently they practice. On average, most students require between 30-40 hours of professional instruction, combined with additional private practice. Our instructors will assess your progress and advise you on when you're ready for the test."
+      },
+      {
+        id: 2,
+        question: "What type of cars do you use for lessons?",
+        answer: "We use modern, well-maintained vehicles equipped with dual controls for safety. Our fleet includes a range of popular models like Toyota Yaris, Ford Focus, and Volkswagen Golf. All our vehicles are regularly serviced and are less than five years old for your comfort and safety."
+      },
+      {
+        id: 3,
+        question: "Do you offer theory test preparation?",
+        answer: "Yes, we offer comprehensive theory test preparation as part of our driving courses. This includes access to practice tests, hazard perception training, and one-on-one sessions to cover the Highway Code and other essential theory knowledge. Our theory pass rate is consistently above the national average."
+      },
+      {
+        id: 4,
+        question: "How can I book lessons and what payment methods do you accept?",
+        answer: "You can book lessons through our website, by phone, or via email. We offer flexible scheduling options including evenings and weekends. We accept all major credit and debit cards, bank transfers, and cash payments. Many students opt for block bookings, which offer better value compared to individual lessons."
+      },
+      {
+        id: 5,
+        question: "What happens if I need to cancel a driving lesson?",
+        answer: "We understand that plans can change. If you need to cancel or reschedule a lesson, we require a minimum of 48 hours notice to avoid any cancellation fees. For cancellations with less than 48 hours notice, a 50% fee may apply, and for same-day cancellations, the full lesson fee is typically charged."
+      }
+    ];
+
+    // Render FAQ items
+    const faqContainer = document.getElementById('faq-container');
+    faqContainer.innerHTML = faqItems.map((item, index) => `
+      <div class="mb-4 border border-gray-200 rounded-lg overflow-hidden">
+        <button
+          class="w-full px-6 py-4 text-left font-medium flex items-center justify-between faq-toggle ${
+            index === 0 ? 'bg-driving-blue text-white' : 'hover:bg-gray-50'
+          }"
+          data-index="${index}"
+          aria-expanded="${index === 0 ? 'true' : 'false'}"
+          aria-controls="faq-answer-${item.id}"
+        >
+          <span>${item.question}</span>
+          <i data-lucide="${index === 0 ? 'chevron-up' : 'chevron-down'}" class="w-5 h-5 flex-shrink-0"></i>
+        </button>
+        
+        <div 
+          id="faq-answer-${item.id}"
+          class="overflow-hidden transition-all duration-300 faq-content"
+          style="max-height: ${index === 0 ? '500px' : '0'}"
+        >
+          <div class="px-6 py-4 bg-gray-50">
+            <p class="text-gray-700">${item.answer}</p>
+          </div>
+        </div>
+      </div>
+    `).join('');
+    lucide.createIcons();
+
+    // FAQ toggle functionality
+    const faqToggles = document.querySelectorAll('.faq-toggle');
+    faqToggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const index = parseInt(toggle.getAttribute('data-index'));
+        const content = toggle.nextElementSibling;
+        const isOpen = toggle.classList.contains('bg-driving-blue');
+        
+        // Close all
+        faqToggles.forEach(t => {
+          t.classList.remove('bg-driving-blue', 'text-white');
+          t.classList.add('hover:bg-gray-50');
+          t.setAttribute('aria-expanded', 'false');
+          t.innerHTML = `<span>${faqItems[parseInt(t.getAttribute('data-index'))].question}</span><i data-lucide="chevron-down" class="w-5 h-5 flex-shrink-0"></i>`;
+          t.nextElementSibling.style.maxHeight = '0';
+        });
+        
+        // Open current if it was closed
+        if (!isOpen) {
+          toggle.classList.add('bg-driving-blue', 'text-white');
+          toggle.classList.remove('hover:bg-gray-50');
+          toggle.setAttribute('aria-expanded', 'true');
+          toggle.innerHTML = `<span>${faqItems[index].question}</span><i data-lucide="chevron-up" class="w-5 h-5 flex-shrink-0"></i>`;
+          content.style.maxHeight = '500px';
+        }
+        
+        lucide.createIcons();
+      });
+    });
+
+    // Road signs
+    const roadSigns = [
+      {
+        id: 1,
+        name: "Stop",
+        image: "https://upload.wikimedia.org/wikipedia/commons/f/f9/MUTCD_R1-1.svg",
+        color: "bg-red-500"
+      },
+      {
+        id: 2,
+        name: "Yield",
+        image: "https://upload.wikimedia.org/wikipedia/commons/1/11/MUTCD_R1-2.svg",
+        color: "bg-red-500"
+      },
+      {
+        id: 3,
+        name: "Speed Limit",
+        image: "https://upload.wikimedia.org/wikipedia/commons/2/21/MUTCD_R2-1_-_Speed_Limit_30.svg",
+        color: "bg-white"
+      },
+      {
+        id: 4,
+        name: "Wrong Way",
+        image: "https://upload.wikimedia.org/wikipedia/commons/9/99/MUTCD_R5-1a.svg",
+        color: "bg-red-500"
+      },
+      {
+        id: 5,
+        name: "No U-Turn",
+        image: "https://upload.wikimedia.org/wikipedia/commons/6/66/MUTCD_R3-4.svg",
+        color: "bg-red-500"
+      },
+      {
+        id: 6,
+        name: "No Left Turn",
+        image: "https://upload.wikimedia.org/wikipedia/commons/c/c9/MUTCD_R3-2.svg",
+        color: "bg-red-500"
+      },
+      {
+        id: 7,
+        name: "School Crossing",
+        image: "https://upload.wikimedia.org/wikipedia/commons/6/69/MUTCD_S1-1.svg",
+        color: "bg-yellow-300"
+      },
+      {
+        id: 8,
+        name: "Railroad Crossing",
+        image: "https://upload.wikimedia.org/wikipedia/commons/6/60/MUTCD_R15-1.svg",
+        color: "bg-yellow-300"
+      }
+    ];
+
+    // Render road signs
+    const roadSignsContainer = document.getElementById('road-signs-container');
+    roadSignsContainer.innerHTML = roadSigns.map(sign => `
+      <div class="flex flex-col items-center">
+        <div class="road-sign ${sign.color} border border-gray-200">
+          <img 
+            src="${sign.image}" 
+            alt="${sign.name}" 
+            class="w-full h-full object-contain"
+          />
+        </div>
+        <span class="mt-2 text-sm font-medium text-gray-700">${sign.name}</span>
+      </div>
+    `).join('');
+  </script>
+</body>
 </html>
