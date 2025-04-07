@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,16 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				driving: {
+					blue: '#1E88E5',
+					darkBlue: '#1565C0',
+					lightBlue: '#64B5F6',
+					red: '#E53935',
+					green: '#43A047',
+					yellow: '#FFD600',
+					gray: '#78909C',
+					lightGray: '#ECEFF1'
 				}
 			},
 			borderRadius: {
@@ -70,25 +81,38 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
+				},
+				'count-up': {
+					'0%': { transform: 'translateY(5px)', opacity: '0' },
+					'100%': { transform: 'translateY(0)', opacity: '1' }
+				},
+				'car-move': {
+					'0%': { transform: 'translateX(-100px)' },
+					'100%': { transform: 'translateX(100px)' }
+				},
+				'traffic-light': {
+					'0%, 33%': { backgroundColor: 'hsl(var(--driving-red))' },
+					'33%, 66%': { backgroundColor: 'hsl(var(--driving-yellow))' },
+					'66%, 100%': { backgroundColor: 'hsl(var(--driving-green))' }
+				},
+				'fade-in': {
+					'0%': { opacity: '0', transform: 'translateY(10px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'count-up': 'count-up 1s ease-out forwards',
+				'car-move': 'car-move 5s ease-in-out infinite alternate',
+				'traffic-light': 'traffic-light 3s infinite',
+				'fade-in': 'fade-in 0.5s ease-out forwards'
 			}
 		}
 	},
