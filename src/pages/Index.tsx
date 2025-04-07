@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import ReviewCarousel from '../components/ReviewCarousel';
@@ -14,9 +14,6 @@ import Map from '../components/Map';
 import Footer from '../components/Footer';
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-
-// Add leaflet package
-<lov-add-dependency>leaflet@1.9.4</lov-add-dependency>
 
 const Index = () => {
   return (
