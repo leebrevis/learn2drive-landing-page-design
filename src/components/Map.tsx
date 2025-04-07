@@ -1,61 +1,16 @@
 
-import React, { useEffect, useRef } from 'react';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
+import React from 'react';
 
 const Map = () => {
-  const mapRef = useRef<HTMLDivElement>(null);
-  const mapInstanceRef = useRef<L.Map | null>(null);
-
-  useEffect(() => {
-    if (mapRef.current && !mapInstanceRef.current) {
-      // Initialize the map
-      const map = L.map(mapRef.current).setView([51.505, -0.09], 13);
-      
-      // Add OpenStreetMap tiles
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(map);
-      
-      // Add a marker for the driving school
-      const schoolIcon = L.icon({
-        iconUrl: 'https://cdn-icons-png.flaticon.com/512/3097/3097144.png',
-        iconSize: [40, 40],
-        iconAnchor: [20, 40],
-        popupAnchor: [0, -40]
-      });
-      
-      L.marker([51.505, -0.09], { icon: schoolIcon })
-        .addTo(map)
-        .bindPopup('<strong>Learn2Drive Headquarters</strong><br>123 Driving Avenue<br>Contact: 123-456-7890')
-        .openPopup();
-      
-      // Save map instance to ref
-      mapInstanceRef.current = map;
-      
-      // Add control to map
-      L.control.scale().addTo(map);
-    }
-    
-    // Cleanup function
-    return () => {
-      if (mapInstanceRef.current) {
-        mapInstanceRef.current.remove();
-        mapInstanceRef.current = null;
-      }
-    };
-  }, []);
-  
   return (
     <section id="contact" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <h2 className="section-title">Find Us</h2>
         
         <div className="max-w-5xl mx-auto">
-          <div 
-            ref={mapRef} 
-            className="h-96 rounded-lg shadow-lg border border-gray-200"
-          ></div>
+          <div className="h-96 rounded-lg shadow-lg border border-gray-200 flex items-center justify-center bg-gray-100">
+            <p className="text-gray-600">Map placeholder</p>
+          </div>
           
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-gray-50 p-6 rounded-lg shadow-sm">

@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
-import { Facebook, Instagram, Youtube, Tiktok, Menu, X } from 'lucide-react';
+import { Facebook, Instagram, Youtube, Menu, X } from 'lucide-react';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -57,9 +56,6 @@ const Navbar = () => {
             <a href="#" className="text-gray-600 hover:text-driving-blue transition-colors" aria-label="YouTube">
               <Youtube size={20} />
             </a>
-            <a href="#" className="text-gray-600 hover:text-driving-blue transition-colors" aria-label="TikTok">
-              <Tiktok size={20} />
-            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -91,9 +87,6 @@ const Navbar = () => {
                 </a>
                 <a href="#" className="text-gray-600 hover:text-driving-blue transition-colors" aria-label="YouTube">
                   <Youtube size={20} />
-                </a>
-                <a href="#" className="text-gray-600 hover:text-driving-blue transition-colors" aria-label="TikTok">
-                  <Tiktok size={20} />
                 </a>
               </div>
             </div>

@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Facebook, Instagram, Youtube, Tiktok, Phone, Mail, MapPin } from 'lucide-react';
+import { Facebook, Instagram, Youtube, Phone, Mail, MapPin } from 'lucide-react';
 
 const Footer = () => {
   const scrollToSection = (id: string) => {
@@ -35,9 +34,6 @@ const Footer = () => {
               </a>
               <a href="#" className="p-2 bg-gray-800 rounded-full hover:bg-driving-blue transition-colors" aria-label="YouTube">
                 <Youtube size={18} />
-              </a>
-              <a href="#" className="p-2 bg-gray-800 rounded-full hover:bg-driving-blue transition-colors" aria-label="TikTok">
-                <Tiktok size={18} />
               </a>
             </div>
           </div>
